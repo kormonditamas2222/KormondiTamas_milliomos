@@ -27,18 +27,6 @@ namespace milliomos
         public string Sorrend { get => sorrend; }
         public string Kategoria { get => kategoria; }
 
-        public List<Sorkerdes> SorkerdesBeolvasas(string fileName)
-        {
-            List<Sorkerdes> sorkerdesek = new();
-            StreamReader sr = new(fileName);
-            while (!sr.EndOfStream)
-            {
-                string[] line = sr.ReadLine().Split(";");
-                string[] valaszok = [line[1], line[2], line[3], line[4]];
-                Sorkerdes kerdes = new(line[0], valaszok, line[5], line[6]);
-                sorkerdesek.Add(kerdes);
-            }
-            return sorkerdesek;
-        }
+        
     }
 }

@@ -12,10 +12,10 @@ namespace milliomos
         short nehezseg;
         string kerdess;
         string[] valaszok;
-        char megoldas;
+        string megoldas;
         string kategoria;
 
-        public Kerdes(short nehezseg, string kerdess, string[] valaszok, char megoldas, string kategoria)
+        public Kerdes(short nehezseg, string kerdess, string[] valaszok, string megoldas, string kategoria)
         {
             this.nehezseg = nehezseg;
             this.kerdess = kerdess;
@@ -27,21 +27,8 @@ namespace milliomos
         public short Nehezseg { get => nehezseg; }
         public string Kerdess { get => kerdess; }
         public string[] Valaszok { get => valaszok; }
-        public char Megoldas { get => megoldas; }
+        public string Megoldas { get => megoldas; }
         public string Kategoria { get => kategoria; }
 
-        public List<Kerdes> KerdesBeolvasas(string fileName)
-        {
-            List<Kerdes> kerdesek = new();
-            StreamReader sr = new(fileName);
-            while (!sr.EndOfStream)
-            {
-                string[] line = sr.ReadLine().Split(";");
-                string[] valaszok = [line[2], line[3], line[4], line[5]];
-                Kerdes kerdes = new(Convert.ToInt16(line[0]), line[1], valaszok, Convert.ToChar(line[6]), line[7]);
-                kerdesek.Add(kerdes);
-            }
-            return kerdesek;
-        }
     }
 }
