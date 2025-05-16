@@ -56,7 +56,7 @@ namespace milliomos
         {
             bool game = true;
             string sorkerdesValasz, valasz;
-            string[] segitsegek = ["Felezés", "Közönség", "Hívás"];
+            string[] segitsegek = ["felezés", "közönség", "hívás"];
             do
             {
                 Console.WriteLine("Üdvözöllek a Legyen Ön is milliomos nevű játékban!");
@@ -66,10 +66,16 @@ namespace milliomos
                 Console.WriteLine(sorkerdes.Kerdes);
                 Console.WriteLine($"A: {sorkerdes.Valaszok[0]}\t B: {sorkerdes.Valaszok[1]}\n C: {sorkerdes.Valaszok[2]} \t D: {sorkerdes.Valaszok[3]}");
                 Console.Write("Válaszod: ");
-                sorkerdesValasz = Console.ReadLine();
-                if ( sorkerdesValasz != null && sorkerdesValasz.ToUpper() == sorkerdes.Sorrend )
+                sorkerdesValasz = Console.ReadLine() ?? "";
+                if (sorkerdesValasz.ToUpper() == sorkerdes.Sorrend)
                 {
                     Console.WriteLine("Helyes a sorrend, kezdődjön a játék!");
+                    Console.Write("Neved: ");
+                    string nev = Console.ReadLine() ?? "";
+                    Console.WriteLine($"Kedves {nev}! Válaszolj helyesen a kérdésekre, hogy végül elérd az ötven millió forintos főnyereményt. \n " +
+                        $"Ha szeretnél segítséget kérni, akkor válaszként beírhatod a következő szavakat: [felezés, közönség, hívás]. " +
+                        $"\n Ha nem tudsz felülkerekedni az adott kérdésen, akkor csak írd be azt hogy [kilép], és az eddig összegyűjtött pénzedet megkapod.\n" +
+                        $"Sok szerencsét!");
                     do
                     {
                         List<Kerdes> validKerdesek = [];
@@ -82,6 +88,18 @@ namespace milliomos
                             }
                         }
                         kerdes = validKerdesek[random.Next(0, validKerdesek.Count)];
+                        Console.WriteLine("A következő kérdés az alábbi kategóriában van: " + kerdes.Kategoria);
+                        Console.WriteLine(kerdes.Kerdess);
+                        Console.WriteLine($"A: {kerdes.Valaszok[0]}\t B: {kerdes.Valaszok[1]}\n C: {kerdes.Valaszok[2]} \t D: {kerdes.Valaszok[3]}");
+                        Console.WriteLine("Válaszod: ");
+                        valasz = Console.ReadLine() ?? "";
+                        if (valasz.ToUpper() == kerdes.Megoldas)
+                        {
+                            Console.WriteLine("Helyes válasz!");
+                            Console.WriteLine("Jelenlegi nyereményed: " + Nyeremenyek[JelenlegiKerdesSzama]);
+                            JelenlegiKerdesSzama++;
+                        }
+
                     } while (JelenlegiKerdesSzama < 16 && game == true);
                 }  
                 else
