@@ -99,7 +99,7 @@ namespace milliomos
                         if (valasz.ToUpper() == kerdes.Megoldas)
                         {
                             Console.WriteLine("Helyes válasz!");
-                            Console.WriteLine("Jelenlegi nyereményed: " + Nyeremenyek[JelenlegiKerdesSzama]);
+                            Console.WriteLine("Jelenlegi nyereményed: " + Nyeremenyek[JelenlegiKerdesSzama - 1]);
                             JelenlegiKerdesSzama++;
                         }
                         else if (valasz.ToLower() == "felezés" && segitsegek.Contains(valasz.ToLower()))
@@ -150,7 +150,7 @@ namespace milliomos
                             if (valasz.ToUpper() == kerdes.Megoldas)
                             {
                                 Console.WriteLine("Helyes válasz!");
-                                Console.WriteLine("Jelenlegi nyereményed: " + Nyeremenyek[JelenlegiKerdesSzama]);
+                                Console.WriteLine("Jelenlegi nyereményed: " + Nyeremenyek[JelenlegiKerdesSzama - 1]);
                                 JelenlegiKerdesSzama++;
                             }
                             else
@@ -194,13 +194,13 @@ namespace milliomos
                                 default: break;
                             }
                             Console.WriteLine("A közönség döntött!");
-                            Console.WriteLine($"A közönség válaszai: A: {szazalekok[0]}% B: {szazalekok[1]} C: {szazalekok[2]} D: {szazalekok[3]}");
+                            Console.WriteLine($"A közönség válaszai: A: {szazalekok[0]}% B: {szazalekok[1]}% C: {szazalekok[2]}% D: {szazalekok[3]}%");
                             Console.WriteLine("Válaszod: ");
                             valasz = Console.ReadLine() ?? "";
                             if (valasz.ToUpper() == kerdes.Megoldas)
                             {
                                 Console.WriteLine("Helyes válasz!");
-                                Console.WriteLine("Jelenlegi nyereményed: " + Nyeremenyek[JelenlegiKerdesSzama]);
+                                Console.WriteLine("Jelenlegi nyereményed: " + Nyeremenyek[JelenlegiKerdesSzama - 1]);
                                 JelenlegiKerdesSzama++;
                             }
                             else
@@ -255,7 +255,7 @@ namespace milliomos
                             if (valasz.ToUpper() == kerdes.Megoldas)
                             {
                                 Console.WriteLine("Helyes válasz!");
-                                Console.WriteLine("Jelenlegi nyereményed: " + Nyeremenyek[JelenlegiKerdesSzama]);
+                                Console.WriteLine("Jelenlegi nyereményed: " + Nyeremenyek[JelenlegiKerdesSzama - 1]);
                                 JelenlegiKerdesSzama++;
                             }
                             else
@@ -289,7 +289,24 @@ namespace milliomos
                             }
                             game = false;
                         }
-
+                        else
+                        {
+                            Console.WriteLine("Helytelen válasz! A játékból kiestél!");
+                            if (JelenlegiKerdesSzama <= 5
+                                )
+                            {
+                                Console.WriteLine("Nyereményed: 0 Ft");
+                            }
+                            else if (JelenlegiKerdesSzama <= 10)
+                            {
+                                Console.WriteLine($"Nyerményed: {Nyeremenyek[4]}");
+                            }
+                            else if (JelenlegiKerdesSzama <= 15)
+                            {
+                                Console.WriteLine($"Nyeréményed: {Nyeremenyek[9]}");
+                            }
+                            game = false;
+                        }
                     } while (JelenlegiKerdesSzama < 16 && game == true);
                 }  
                 else
