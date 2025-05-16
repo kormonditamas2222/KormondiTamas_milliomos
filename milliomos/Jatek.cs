@@ -156,17 +156,18 @@ namespace milliomos
                             else
                             {
                                 Console.WriteLine("Helytelen válasz! A játékból kiestél!");
-                                if (JelenlegiKerdesSzama <= 5)
+                                switch (JelenlegiKerdesSzama)
                                 {
-                                    Console.WriteLine("Nyereményed: 0 Ft");
-                                }
-                                else if (JelenlegiKerdesSzama <= 10)
-                                {
-                                    Console.WriteLine($"Nyerményed: {Nyeremenyek[4]}");
-                                }
-                                else if (JelenlegiKerdesSzama <= 15)
-                                {
-                                    Console.WriteLine($"Nyeréményed: {Nyeremenyek[9]}");
+                                    case <= 5:
+                                        Console.WriteLine("Nyereményed: 0 Ft");
+                                        break;
+                                    case <= 10:
+                                        Console.WriteLine($"Nyerményed: {Nyeremenyek[4]}");
+                                        break;
+                                    case <= 15:
+                                        Console.WriteLine($"Nyeréményed: {Nyeremenyek[9]}");
+                                        break;
+                                    default: break;
                                 }
                                 game = false;
                             }
@@ -206,17 +207,18 @@ namespace milliomos
                             else
                             {
                                 Console.WriteLine("Helytelen válasz! A játékból kiestél!");
-                                if (JelenlegiKerdesSzama <= 5)
+                                switch (JelenlegiKerdesSzama)
                                 {
-                                    Console.WriteLine("Nyereményed: 0 Ft");
-                                }
-                                else if (JelenlegiKerdesSzama <= 10)
-                                {
-                                    Console.WriteLine($"Nyerményed: {Nyeremenyek[4]}");
-                                }
-                                else if (JelenlegiKerdesSzama <= 15)
-                                {
-                                    Console.WriteLine($"Nyeréményed: {Nyeremenyek[9]}");
+                                    case <= 5:
+                                        Console.WriteLine("Nyereményed: 0 Ft");
+                                        break;
+                                    case <= 10:
+                                        Console.WriteLine($"Nyerményed: {Nyeremenyek[4]}");
+                                        break;
+                                    case <= 15:
+                                        Console.WriteLine($"Nyeréményed: {Nyeremenyek[9]}");
+                                        break;
+                                    default: break;
                                 }
                                 game = false;
                             }
@@ -261,17 +263,18 @@ namespace milliomos
                             else
                             {
                                 Console.WriteLine("Helytelen válasz! A játékból kiestél!");
-                                if (JelenlegiKerdesSzama <= 5)
+                                switch (JelenlegiKerdesSzama)
                                 {
-                                    Console.WriteLine("Nyereményed: 0 Ft");
-                                }
-                                else if (JelenlegiKerdesSzama <= 10)
-                                {
-                                    Console.WriteLine($"Nyerményed: {Nyeremenyek[4]}");
-                                }
-                                else if (JelenlegiKerdesSzama <= 15)
-                                {
-                                    Console.WriteLine($"Nyeréményed: {Nyeremenyek[9]}");
+                                    case <= 5:
+                                        Console.WriteLine("Nyereményed: 0 Ft");
+                                        break;
+                                    case <= 10:
+                                        Console.WriteLine($"Nyerményed: {Nyeremenyek[4]}");
+                                        break;
+                                    case <= 15:
+                                        Console.WriteLine($"Nyeréményed: {Nyeremenyek[9]}");
+                                        break;
+                                    default: break;
                                 }
                                 game = false;
                             }
@@ -292,18 +295,18 @@ namespace milliomos
                         else
                         {
                             Console.WriteLine("Helytelen válasz! A játékból kiestél!");
-                            if (JelenlegiKerdesSzama <= 5
-                                )
+                            switch (JelenlegiKerdesSzama)
                             {
-                                Console.WriteLine("Nyereményed: 0 Ft");
-                            }
-                            else if (JelenlegiKerdesSzama <= 10)
-                            {
-                                Console.WriteLine($"Nyerményed: {Nyeremenyek[4]}");
-                            }
-                            else if (JelenlegiKerdesSzama <= 15)
-                            {
-                                Console.WriteLine($"Nyeréményed: {Nyeremenyek[9]}");
+                                case <= 5:
+                                    Console.WriteLine("Nyereményed: 0 Ft");
+                                    break;
+                                case <= 10:
+                                    Console.WriteLine($"Nyerményed: {Nyeremenyek[4]}");
+                                    break;
+                                case <= 15:
+                                    Console.WriteLine($"Nyeréményed: {Nyeremenyek[9]}");
+                                    break;
+                                default: break;
                             }
                             game = false;
                         }
