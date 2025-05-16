@@ -91,6 +91,7 @@ namespace milliomos
                         Console.WriteLine("A következő kérdés az alábbi kategóriában van: " + kerdes.Kategoria);
                         Console.WriteLine(kerdes.Kerdess);
                         Console.WriteLine($"A: {kerdes.Valaszok[0]}\t B: {kerdes.Valaszok[1]}\n C: {kerdes.Valaszok[2]} \t D: {kerdes.Valaszok[3]}");
+                        Console.WriteLine($"Elérhető segítségeid: {segitsegek[0]}, {segitsegek[1]}, {segitsegek[2]}");
                         Console.WriteLine("Válaszod: ");
                         valasz = Console.ReadLine() ?? "";
                         if (valasz.ToUpper() == kerdes.Megoldas)
@@ -99,7 +100,74 @@ namespace milliomos
                             Console.WriteLine("Jelenlegi nyereményed: " + Nyeremenyek[JelenlegiKerdesSzama]);
                             JelenlegiKerdesSzama++;
                         }
-
+                        else if (valasz.ToLower() == "felezés" && segitsegek.Contains(valasz.ToLower()))
+                        {
+                            int randomSzam = random.Next(0, 3);
+                            switch (kerdes.Megoldas)
+                            {
+                                case "A": 
+                                    switch (randomSzam)
+                                    {
+                                        case 0: Console.WriteLine($"A: {kerdes.Valaszok[0]}\t B: {kerdes.Valaszok[1]}"); break;
+                                        case 1: Console.WriteLine($"A: {kerdes.Valaszok[0]}\t C: {kerdes.Valaszok[2]}"); break;
+                                        case 2: Console.WriteLine($"A: {kerdes.Valaszok[0]}\t D: {kerdes.Valaszok[3]}"); break;
+                                        default: break;
+                                    }
+                                    break;
+                                case "B":
+                                    switch (randomSzam)
+                                    {
+                                        case 0: Console.WriteLine($"A: {kerdes.Valaszok[0]}\t B: {kerdes.Valaszok[1]}"); break;
+                                        case 1: Console.WriteLine($"B: {kerdes.Valaszok[1]}\t C: {kerdes.Valaszok[2]}"); break;
+                                        case 2: Console.WriteLine($"B: {kerdes.Valaszok[1]}\t D: {kerdes.Valaszok[3]}"); break;
+                                        default: break;
+                                    }
+                                    break;
+                                case "C":
+                                    switch (randomSzam)
+                                    {
+                                        case 0: Console.WriteLine($"A: {kerdes.Valaszok[0]}\t C: {kerdes.Valaszok[2]}"); break;
+                                        case 1: Console.WriteLine($"B: {kerdes.Valaszok[1]}\t C: {kerdes.Valaszok[2]}"); break;
+                                        case 2: Console.WriteLine($"C: {kerdes.Valaszok[2]}\t D: {kerdes.Valaszok[3]}"); break;
+                                        default: break;
+                                    }
+                                    break;
+                                case "D":
+                                    switch (randomSzam)
+                                    {
+                                        case 0: Console.WriteLine($"A: {kerdes.Valaszok[0]}\t D: {kerdes.Valaszok[3]}"); break;
+                                        case 1: Console.WriteLine($"B: {kerdes.Valaszok[1]}\t D: {kerdes.Valaszok[3]}"); break;
+                                        case 2: Console.WriteLine($"C: {kerdes.Valaszok[2]}\t D: {kerdes.Valaszok[3]}"); break;
+                                        default: break;
+                                    }
+                                    break;
+                            }
+                            Console.WriteLine("Válaszod: ");
+                            valasz = Console.ReadLine() ?? "";
+                            if (valasz.ToUpper() == kerdes.Megoldas)
+                            {
+                                Console.WriteLine("Helyes válasz!");
+                                Console.WriteLine("Jelenlegi nyereményed: " + Nyeremenyek[JelenlegiKerdesSzama]);
+                                JelenlegiKerdesSzama++;
+                            }
+                            else
+                            {
+                                Console.WriteLine("Helytelen válasz! A játékból kiestél!");
+                                if (JelenlegiKerdesSzama <= 5)
+                                {
+                                    Console.WriteLine("Nyereményed: 0 Ft");
+                                }
+                                else if (JelenlegiKerdesSzama <= 10)
+                                {
+                                    Console.WriteLine($"Nyerményed: {Nyeremenyek[4]}");
+                                }
+                                else if (JelenlegiKerdesSzama <= 15)
+                                {
+                                    Console.WriteLine($"Nyeréményed: {Nyeremenyek[9]}");
+                                }
+                                game = false;
+                            }
+                        }
                     } while (JelenlegiKerdesSzama < 16 && game == true);
                 }  
                 else
