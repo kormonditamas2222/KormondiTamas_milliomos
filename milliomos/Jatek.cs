@@ -173,6 +173,7 @@ namespace milliomos
                         }
                         else if (valasz.ToLower() == "közönség" && segitsegek.Contains(valasz.ToLower()))
                         {
+                            segitsegek[1] = "";
                             const int max = 80;
                             int total = 80;
                             int[] szazalekok = new int[4];
@@ -222,6 +223,7 @@ namespace milliomos
                         }
                         else if (valasz.ToLower() == "hívás" && segitsegek.Contains(valasz.ToLower()))
                         {
+                            segitsegek[2] = "";
                             int esely = random.Next(1, 101);
                             int randomValasztas = random.Next(0, 3);
                             switch (kerdes.Megoldas)
@@ -274,6 +276,20 @@ namespace milliomos
                                 game = false;
                             }
                         }
+                        else if (valasz.ToLower() == "kilép")
+                        {
+                            Console.WriteLine("Kiléptél a játékból, köszönöm a játékot, remélem élvezted!");
+                            if (JelenlegiKerdesSzama == 1)
+                            {
+                                Console.WriteLine("Nyereményed: 0 Ft");
+                            }
+                            else
+                            {
+                                Console.WriteLine($"Nyereményed: {Nyeremenyek[JelenlegiKerdesSzama - 1]}");
+                            }
+                            game = false;
+                        }
+
                     } while (JelenlegiKerdesSzama < 16 && game == true);
                 }  
                 else
