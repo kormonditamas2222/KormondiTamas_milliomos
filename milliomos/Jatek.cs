@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -107,7 +108,7 @@ namespace milliomos
                             int randomSzam = random.Next(0, 3);
                             switch (kerdes.Megoldas)
                             {
-                                case "A": 
+                                case "A":
                                     switch (randomSzam)
                                     {
                                         case 0: Console.WriteLine($"A: {kerdes.Valaszok[0]}\t B: {kerdes.Valaszok[1]}"); break;
@@ -193,6 +194,60 @@ namespace milliomos
                             }
                             Console.WriteLine("A közönség döntött!");
                             Console.WriteLine($"A közönség válaszai: A: {szazalekok[0]}% B: {szazalekok[1]} C: {szazalekok[2]} D: {szazalekok[3]}");
+                            Console.WriteLine("Válaszod: ");
+                            valasz = Console.ReadLine() ?? "";
+                            if (valasz.ToUpper() == kerdes.Megoldas)
+                            {
+                                Console.WriteLine("Helyes válasz!");
+                                Console.WriteLine("Jelenlegi nyereményed: " + Nyeremenyek[JelenlegiKerdesSzama]);
+                                JelenlegiKerdesSzama++;
+                            }
+                            else
+                            {
+                                Console.WriteLine("Helytelen válasz! A játékból kiestél!");
+                                if (JelenlegiKerdesSzama <= 5)
+                                {
+                                    Console.WriteLine("Nyereményed: 0 Ft");
+                                }
+                                else if (JelenlegiKerdesSzama <= 10)
+                                {
+                                    Console.WriteLine($"Nyerményed: {Nyeremenyek[4]}");
+                                }
+                                else if (JelenlegiKerdesSzama <= 15)
+                                {
+                                    Console.WriteLine($"Nyeréményed: {Nyeremenyek[9]}");
+                                }
+                                game = false;
+                            }
+                        }
+                        else if (valasz.ToLower() == "hívás" && segitsegek.Contains(valasz.ToLower()))
+                        {
+                            int esely = random.Next(1, 101);
+                            int randomValasztas = random.Next(0, 3);
+                            switch (kerdes.Megoldas)
+                            {
+                                case "A":
+                                    string[] egyeb = ["B", "C", "D"];
+                                    if (esely > 40) Console.WriteLine("Apád azt mondja, hogy a jó válasz A lehet.");
+                                    else Console.WriteLine($"Apád azt mondja, hogy a jó válasz {egyeb[randomValasztas]}");
+                                    break;
+                                case "B":
+                                    egyeb = ["A", "C", "D"];
+                                    if (esely > 40) Console.WriteLine("Apád azt mondja, hogy a jó válasz B lehet.");
+                                    else Console.WriteLine($"Apád azt mondja, hogy a jó válasz {egyeb[randomValasztas]}");
+                                    break;
+                                case "C":
+                                    egyeb = ["A", "B", "D"];
+                                    if (esely > 40) Console.WriteLine("Apád azt mondja, hogy a jó válasz C lehet.");
+                                    else Console.WriteLine($"Apád azt mondja, hogy a jó válasz {egyeb[randomValasztas]}");
+                                    break;
+                                case "D":
+                                    egyeb = ["A", "B", "C"];
+                                    if (esely > 40) Console.WriteLine("Apád azt mondja, hogy a jó válasz D lehet.");
+                                    else Console.WriteLine($"Apád azt mondja, hogy a jó válasz {egyeb[randomValasztas]}");
+                                    break;
+                                default: break;
+                            }
                             Console.WriteLine("Válaszod: ");
                             valasz = Console.ReadLine() ?? "";
                             if (valasz.ToUpper() == kerdes.Megoldas)
