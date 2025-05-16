@@ -22,7 +22,7 @@ namespace milliomos
         }
 
         public string[] Nyeremenyek { get => nyeremenyek; }
-        public int JelenlegiKerdesSzama { get => jelenlegiKerdesSzama; }
+        public int JelenlegiKerdesSzama { get => jelenlegiKerdesSzama; set => jelenlegiKerdesSzama = value; }
 
         public List<Sorkerdes> SorkerdesBeolvasas(string fileName)
         {
@@ -55,7 +55,6 @@ namespace milliomos
         public void LegyenOnIsMilliomos(List<Kerdes> kerdesek, List<Sorkerdes> sorkerdesek)
         {
             bool game = true;
-            bool sorkerdesHelyes = false;
             string sorkerdesValasz, valasz;
             string[] segitsegek = ["Felezés", "Közönség", "Hívás"];
             do
@@ -68,13 +67,22 @@ namespace milliomos
                 Console.WriteLine($"A: {sorkerdes.Valaszok[0]}\t B: {sorkerdes.Valaszok[1]}\n C: {sorkerdes.Valaszok[2]} \t D: {sorkerdes.Valaszok[3]}");
                 Console.Write("Válaszod: ");
                 sorkerdesValasz = Console.ReadLine();
-                if ( sorkerdesValasz != null && sorkerdesValasz == sorkerdes.Sorrend )
+                if ( sorkerdesValasz != null && sorkerdesValasz.ToUpper() == sorkerdes.Sorrend )
                 {
                     Console.WriteLine("Helyes a sorrend, kezdődjön a játék!");
                     do
                     {
-
-                    } while (JelenlegiKerdesSzama < 16);
+                        List<Kerdes> validKerdesek = [];
+                        Kerdes kerdes;
+                        foreach (var item in kerdesek)
+                        {
+                            if (item.Nehezseg == JelenlegiKerdesSzama)
+                            {
+                                validKerdesek.Add(item);
+                            }
+                        }
+                        kerdes = validKerdesek[random.Next(0, validKerdesek.Count)];
+                    } while (JelenlegiKerdesSzama < 16 && game == true);
                 }  
                 else
                 {
