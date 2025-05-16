@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -102,6 +103,7 @@ namespace milliomos
                         }
                         else if (valasz.ToLower() == "felezés" && segitsegek.Contains(valasz.ToLower()))
                         {
+                            segitsegek[0] = "";
                             int randomSzam = random.Next(0, 3);
                             switch (kerdes.Megoldas)
                             {
@@ -142,6 +144,55 @@ namespace milliomos
                                     }
                                     break;
                             }
+                            Console.WriteLine("Válaszod: ");
+                            valasz = Console.ReadLine() ?? "";
+                            if (valasz.ToUpper() == kerdes.Megoldas)
+                            {
+                                Console.WriteLine("Helyes válasz!");
+                                Console.WriteLine("Jelenlegi nyereményed: " + Nyeremenyek[JelenlegiKerdesSzama]);
+                                JelenlegiKerdesSzama++;
+                            }
+                            else
+                            {
+                                Console.WriteLine("Helytelen válasz! A játékból kiestél!");
+                                if (JelenlegiKerdesSzama <= 5)
+                                {
+                                    Console.WriteLine("Nyereményed: 0 Ft");
+                                }
+                                else if (JelenlegiKerdesSzama <= 10)
+                                {
+                                    Console.WriteLine($"Nyerményed: {Nyeremenyek[4]}");
+                                }
+                                else if (JelenlegiKerdesSzama <= 15)
+                                {
+                                    Console.WriteLine($"Nyeréményed: {Nyeremenyek[9]}");
+                                }
+                                game = false;
+                            }
+                        }
+                        else if (valasz.ToLower() == "közönség" && segitsegek.Contains(valasz.ToLower()))
+                        {
+                            const int max = 80;
+                            int total = 80;
+                            int[] szazalekok = new int[4];
+                            do
+                            {
+                                for (int i = 0; i < szazalekok.Length; i++)
+                                {
+                                    szazalekok[i] = random.Next(0, total + 1);
+                                    total -= szazalekok[i];
+                                }
+                            } while ((szazalekok[0] + szazalekok[1] + szazalekok[2] + szazalekok[3]) != max);
+                            switch (kerdes.Megoldas)
+                            {
+                                case "A": szazalekok[0] += 20; break;
+                                case "B": szazalekok[1] += 20; break;
+                                case "C": szazalekok[2] += 20; break;
+                                case "D": szazalekok[3] += 20; break;
+                                default: break;
+                            }
+                            Console.WriteLine("A közönség döntött!");
+                            Console.WriteLine($"A közönség válaszai: A: {szazalekok[0]}% B: {szazalekok[1]} C: {szazalekok[2]} D: {szazalekok[3]}");
                             Console.WriteLine("Válaszod: ");
                             valasz = Console.ReadLine() ?? "";
                             if (valasz.ToUpper() == kerdes.Megoldas)
