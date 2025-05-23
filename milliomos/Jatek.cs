@@ -174,25 +174,32 @@ namespace milliomos
                         }
                         else if (valasz.ToLower() == "közönség" && segitsegek.Contains(valasz.ToLower()))
                         {
+                            Console.WriteLine("Kérjük a közönséget, hogy szavazzon!");
+                            for (int i = 0; i < 5; i++)
+                            {
+                                Thread.Sleep(1000);
+                                Console.WriteLine(".");
+                            }
                             segitsegek[1] = "";
-                            const int max = 80;
-                            int total = 80;
                             int[] szazalekok = new int[4];
+                            int sum;
                             do
                             {
+                                sum = 0;
                                 for (int i = 0; i < szazalekok.Length; i++)
                                 {
-                                    szazalekok[i] = random.Next(0, total + 1);
-                                    total -= szazalekok[i];
+                                    szazalekok[i] = random.Next(0, 81);
+                                    sum += szazalekok[i];
                                 }
-                            } while ((szazalekok[0] + szazalekok[1] + szazalekok[2] + szazalekok[3]) != max);
+                            } while (sum != 80);
+
                             switch (kerdes.Megoldas)
                             {
                                 case "A": szazalekok[0] += 20; break;
                                 case "B": szazalekok[1] += 20; break;
                                 case "C": szazalekok[2] += 20; break;
                                 case "D": szazalekok[3] += 20; break;
-                                default: break;
+                                default: Console.WriteLine("problem"); break;
                             }
                             Console.WriteLine("A közönség döntött!");
                             Console.WriteLine($"A közönség válaszai: A: {szazalekok[0]}% B: {szazalekok[1]}% C: {szazalekok[2]}% D: {szazalekok[3]}%");
